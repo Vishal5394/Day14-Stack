@@ -11,21 +11,34 @@ public class Main {
         queue = new int[capacity]; 
     } 
    
-    // insert an element into the queue
-    static void queueEnqueue(int item)  { 
-        // check if the queue is full
-        if (capacity == rear) { 
+       static void queueEnqueue(int item)  { 
+           if (capacity == rear) { 
             System.out.printf("\nQueue is full\n"); 
             return; 
         } 
    
-        // insert element at the rear 
-        else { 
+           else { 
             queue[rear] = item; 
             rear++; 
         } 
         return; 
     }
+       static void queueDequeue()  { 
+           if (front == rear) { 
+               System.out.printf("\nQueue is empty\n"); 
+               return; 
+           } 
+       
+           else { 
+               for (int i = 0; i < rear - 1; i++) { 
+                   queue[i] = queue[i + 1]; 
+               } 
+               if (rear < capacity) 
+                   queue[rear] = 0; 
+               rear--; 
+           } 
+           return; 
+       } 
     
     static void queueDisplay() 
     { 
@@ -54,9 +67,14 @@ public class Main {
             q.queueEnqueue(30); 
             q.queueEnqueue(70); 
             
-       
-            // print Queue elements 
             System.out.println("Queue after Enqueue Operation:");
+            q.queueDisplay(); 
+            
+
+            q.queueDequeue(); 
+            q.queueDequeue(); 
+            q.queueDequeue();
+            System.out.printf("\n Queue after two dequeue operations:"); 
             q.queueDisplay(); 
    
         }
